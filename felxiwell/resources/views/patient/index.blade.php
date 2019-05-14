@@ -12,7 +12,7 @@
       <hr>
 
       @forelse($patients as $patient)
-        <h4><a href="/patient/{{$patient->id}}">{{$patient->name}}</a></h4>
+        <h4><a href="/patient/{{$patient->id}}">{{$patient->firstName}} {{$patient->lastName}}</a></h4>
         <h4>Date of birth: {{$patient->dateOfBirth}}</h4>
         <h4>Gender: {{$patient->gender}}</h4>
         <hr>

@@ -36,4 +36,24 @@ class ResetPasswordController extends Controller
     {
         $this->middleware('guest');
     }
+
+    public function showResetForm($token)
+    {
+        dd($token);
+        $user_id = Auth::user()->id;
+        // $patients = Patient::whereRaw('doctor_id=?',array($user_id))->get();
+        $patients = Patient::whereRaw('doctor_id=?',array($user_id))->orderBy('lastName', 'ASC')->get();
+        // dd($patients);
+        return view('patient.index')->with('patients', $patients);
+    }
+    
+    public function reset()
+    {
+        dd("hello");
+        $user_id = Auth::user()->id;
+        // $patients = Patient::whereRaw('doctor_id=?',array($user_id))->get();
+        $patients = Patient::whereRaw('doctor_id=?',array($user_id))->orderBy('lastName', 'ASC')->get();
+        // dd($patients);
+        return view('patient.index')->with('patients', $patients);
+    }
 }

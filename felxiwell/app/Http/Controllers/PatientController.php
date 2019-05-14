@@ -21,7 +21,9 @@ class PatientController extends Controller
     public function index()
     {
         $user_id = Auth::user()->id;
-        $patients = Patient::whereRaw('doctor_id=?',array($user_id))->get();
+        // $patients = Patient::whereRaw('doctor_id=?',array($user_id))->get();
+        $patients = Patient::whereRaw('doctor_id=?',array($user_id))->orderBy('lastName', 'ASC')->get();
+        // dd($patients);
         return view('patient.index')->with('patients', $patients);
     }
 
@@ -32,8 +34,9 @@ class PatientController extends Controller
      */
     public function create()
     {
-        return view('patient.create_form');
-        // return view('patient.create_form')->with('manufacturers', Manufacturer::all());
+        $doctors = User::whereRaw('type=?','doctor')->get();
+        // dd($doctors);
+        return view('patient.create_form')->with('doctors', $doctors);
     }
 
     /**
@@ -45,21 +48,26 @@ class PatientController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|max:255',
+            'firstName' => 'required|max:255',
+            'lastName' => 'required|max:255',
             'dateOfBirth' => 'required|date',
             'height' => 'numeric',
             'weight' => 'numeric'
         ]);
-        $user_id = Auth::user()->id;
+        $doctor_id = Auth::user()->id;
+        if (Auth::user()->type == 'manager') {
+            $doctor_id = $request->doctor_id;
+        }
         $patient = new Patient();
-        $patient->name = $request->name;
+        $patient->firstName = $request->firstName;
+        $patient->lastName = $request->lastName;
         $patient->dateOfBirth = $request->dateOfBirth;
         $patient->gender = $request->gender;
         $patient->phone = $request->phone;
         $patient->height = $request->height;
         $patient->weight = $request->weight;
-        $patient->name = $request->name;
-        $patient->doctor_id = $user_id;
+        $patient->doctor_id = $doctor_id;
+        // dd($patient);
         $patient->save();
         return redirect("/patient/$patient->id");
     }
@@ -98,19 +106,20 @@ class PatientController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required|max:255',
+            'firstName' => 'required|max:255',
+            'lastName' => 'required|max:255',
             'dateOfBirth' => 'required|date',
             'height' => 'numeric',
             'weight' => 'numeric'
         ]);
         $patient = Patient::find($id);
-        $patient->name = $request->name;
+        $patient->firstName = $request->firstName;
+        $patient->lastName = $request->lastName;
         $patient->dateOfBirth = $request->dateOfBirth;
         $patient->gender = $request->gender;
         $patient->phone = $request->phone;
         $patient->height = $request->height;
         $patient->weight = $request->weight;
-        $patient->name = $request->name;
         $patient->save();
         return redirect("/patient/$id");
     }
@@ -124,7 +133,12 @@ class PatientController extends Controller
     public function destroy($id)
     {
         $patient = Patient::find($id);
+        $doctor_id = $patient->doctor_id;
         $patient->delete();
-        return redirect("/patient");
+        if (Auth::user()->type == 'doctor') {
+            return redirect("/patient");
+        }else {
+            return redirect("/patientsForDoctor/$doctor_id");
+        }
     }
 }

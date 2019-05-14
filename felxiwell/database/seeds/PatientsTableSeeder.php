@@ -12,7 +12,8 @@ class PatientsTableSeeder extends Seeder
     public function run()
     {
         DB::table('patients')->insert([
-            'name' => 'Alice Yang',
+            'firstName' => 'Alice',
+            'lastName' => 'Yang',
             'dateOfBirth' => '1981-05-22',
             'gender' => 'female',
             'phone' => '0420902311',
@@ -23,7 +24,8 @@ class PatientsTableSeeder extends Seeder
         ]);
 
         DB::table('patients')->insert([
-            'name' => 'Brown Alenxader',
+            'firstName' => 'Brown',
+            'lastName' => 'Alenxader',
             'dateOfBirth' => '1982-05-22',
             'gender' => 'male',
             'phone' => '0420902312',
@@ -34,7 +36,8 @@ class PatientsTableSeeder extends Seeder
         ]);
 
         DB::table('patients')->insert([
-            'name' => 'Daniel Goodman',
+            'firstName' => 'Daniel',
+            'lastName' => 'Goodman',
             'dateOfBirth' => '1983-05-22',
             'gender' => 'male',
             'phone' => '0420902313',
@@ -45,7 +48,8 @@ class PatientsTableSeeder extends Seeder
         ]);
 
         DB::table('patients')->insert([
-            'name' => 'Bonny Honey',
+            'firstName' => 'Bonny',
+            'lastName' => 'Honey',
             'dateOfBirth' => '1984-05-22',
             'gender' => 'female',
             'phone' => '0420902314',
@@ -56,7 +60,8 @@ class PatientsTableSeeder extends Seeder
         ]);
 
         DB::table('patients')->insert([
-            'name' => 'Jingting Bai',
+            'firstName' => 'Json',
+            'lastName' => 'John',
             'dateOfBirth' => '1985-05-22',
             'gender' => 'male',
             'phone' => '0420902315',

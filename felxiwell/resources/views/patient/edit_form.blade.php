@@ -26,8 +26,11 @@
       <form method="post" action="/patient/{{$patient->id}}">
         {{csrf_field()}}
         {{ method_field('PUT') }}
-      <p><label>Name: </label>
-      <input type="text" name="name" value="{{$patient->name}}"></p>
+      <p><label>First Name: </label>
+      <input type="text" name="firstName" value="{{$patient->firstName}}"></p>
+
+      <p><label>Last Name: </label>
+      <input type="text" name="lastName" value="{{$patient->lastName}}"></p>
 
       <p><label>Date of birth: </label>
       <input type="text" name="dateOfBirth" value="{{$patient->dateOfBirth}}"><br></p>

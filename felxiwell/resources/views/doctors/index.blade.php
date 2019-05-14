@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-  homepage
+  Doctor List
 @endsection
   
 @section('content')
@@ -12,7 +12,7 @@
       <hr>
 
       @forelse($doctors as $doctor)
-        <h4>Dr {{$doctor->name}}</a></h4>
+        <h4><a href="/patientsForDoctor/{{$doctor->id}}">Dr {{$doctor->name}}</a></h4>
         <h4>Email: {{$doctor->email}}</h4>
         
         <a href="/doctor/{{$doctor->id}}"><input type="submit" value="Delete"></a>

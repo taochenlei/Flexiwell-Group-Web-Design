@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('title')
+  Password Reset
+@endsection
 
 @section('content')
 <div class="container">
@@ -11,7 +14,6 @@
                     <form class="form-horizontal" method="POST" action="{{ route('password.request') }}">
                         {{ csrf_field() }}
 
-                        <input type="hidden" name="token" value="{{ $token }}">
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>

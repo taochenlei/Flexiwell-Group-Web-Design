@@ -1,0 +1,1 @@
+[14-May-2019 03:06:36 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\DoctorController::changePassword() in /home/ubuntu/workspace/Flexiwell-Group-Web-Design/felxiwell/app/Http/Controllers/DoctorController.php on line 72

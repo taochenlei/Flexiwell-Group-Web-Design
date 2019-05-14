@@ -23,13 +23,22 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+// Route::get('/changepassword/{doctor_id}', function () {
+//     return view('auth.passwords.change');
+// });
+
+// Route::post('/changepassword', 'DoctorController@changePassword');
+
+Route::get('/changePassword','DoctorController@showChangePasswordForm');
+Route::post('/changePassword','DoctorController@changePassword')->name('changePassword');
+Route::get('/patientsForDoctor/{doctor_id}','DoctorController@show');
+Route::get('/patient/createFor/{doctor_id}','DoctorController@create');
 
 
-Route::get('/t', function () {
-    return view('test');
-});
 
-Route::get('/1', function () {
+
+
+Route::get('/password_resets', function () {
     return view('auth.passwords.reset');
 });
 
@@ -72,6 +81,10 @@ Route::get('/t', function () {
     return view('test');
 });
 */
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 

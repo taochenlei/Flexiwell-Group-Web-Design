@@ -26,8 +26,23 @@
         
         <form method="post" action="/patient">
           {{csrf_field()}}
-          <p><label>Name: </label>
-          <input type="text" name="name" value="{{old('name')}}"></p>
+          
+          @if (Auth::user()->type == 'manager')
+            <p><label>Create For: </label>
+            <select name="doctor_id">
+              <option value="{{Auth::user()->id}}">Myself</option>
+              @forelse ($doctors as $doctor)
+                <option value="{{$doctor->id}}">Dr {{$doctor->name}}</option>
+              @empty
+              @endforelse
+            </select></p>
+          @endif
+          
+          <p><label>First Name: </label>
+          <input type="text" name="firstName" value="{{old('firstName')}}"></p>
+
+          <p><label>Last Name: </label>
+          <input type="text" name="lastName" value="{{old('lastName')}}"></p>
 
           <p><label>Date of birth: </label>
           <input type="text" name="dateOfBirth" value="{{old('dateOfBirth')}}"></p>
