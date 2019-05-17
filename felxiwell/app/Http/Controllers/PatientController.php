@@ -51,8 +51,8 @@ class PatientController extends Controller
             'firstName' => 'required|max:255',
             'lastName' => 'required|max:255',
             'dateOfBirth' => 'required|date',
-            'height' => 'numeric',
-            'weight' => 'numeric'
+            'height' => 'numeric|min:1',
+            'weight' => 'numeric|min:1'
         ]);
         $doctor_id = Auth::user()->id;
         if (Auth::user()->type == 'manager') {
@@ -109,8 +109,8 @@ class PatientController extends Controller
             'firstName' => 'required|max:255',
             'lastName' => 'required|max:255',
             'dateOfBirth' => 'required|date',
-            'height' => 'numeric',
-            'weight' => 'numeric'
+            'height' => 'numeric|min:1',
+            'weight' => 'numeric|min:1'
         ]);
         $patient = Patient::find($id);
         $patient->firstName = $request->firstName;

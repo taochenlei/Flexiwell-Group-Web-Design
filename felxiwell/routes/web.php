@@ -11,81 +11,32 @@
 |
 */
 
+// homepage & welcome page
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/home', 'HomeController@index')->name('home');
 
+// use patient controller
 Route::resource('patient', 'PatientController');
+
+// doctor index page
 Route::get('/user/{user_id}', 'DoctorController@index');
+
+// doctor destory
 Route::get('/doctor/{id}', 'DoctorController@destroy');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-// Route::get('/changepassword/{doctor_id}', function () {
-//     return view('auth.passwords.change');
-// });
-
-// Route::post('/changepassword', 'DoctorController@changePassword');
-
+// show change password form
 Route::get('/changePassword','DoctorController@showChangePasswordForm');
+
+// change password form(post)
 Route::post('/changePassword','DoctorController@changePassword')->name('changePassword');
+
+// show the patients for selected doctor for admin
 Route::get('/patientsForDoctor/{doctor_id}','DoctorController@show');
+
+// create the patients for selected doctor for admin
 Route::get('/patient/createFor/{doctor_id}','DoctorController@create');
 
-
-
-
-
-Route::get('/password_resets', function () {
-    return view('auth.passwords.reset');
-});
-
-Route::get('/2', function () {
-    return view('patient.index');
-});
-
-/*
-// Resource Controllers
-Route::resource('product', 'ProductController');
-Route::resource('review', 'ReviewController');
-Route::resource('photo', 'PhotoController');
-Route::resource('vote', 'VoteController');
-Route::resource('follow', 'FollowController');
-
-
-// welcome page
-Route::get('/', function () {
-    return view('welcome');
-});
-
-// documentation page
-Route::get('/documentation', function () {
-    return view('documentation');
-});
-
-// Some other controllers for new review; order by date and rate; user's home page
-Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/product/{product_id}/newreview', 'ReviewController@create');
-Route::get('/product/{product_id}/bydate', 'ProductController@bydate');
-Route::get('/product/{product_id}/byrate', 'ProductController@byrate');
-Route::get('/user/review/{user_id}', 'ReviewController@index');
-
-// testing things
-Route::get('/1', function () {
-    return view('bootstrap.1');
-});
-Route::get('/t', function () {
-    return view('test');
-});
-*/
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
