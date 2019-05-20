@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Patient;
 use App\User;
 use Auth;
+use DateTime;
 
 class PatientController extends Controller
 {
@@ -51,8 +52,23 @@ class PatientController extends Controller
             'firstName' => 'required|max:255',
             'lastName' => 'required|max:255',
             'dateOfBirth' => 'required|date',
+            'dateOfInjury' => 'required|date',
+            'dateOfAssessment' => 'required|date',
             'height' => 'numeric|min:1',
-            'weight' => 'numeric|min:1'
+            'weight' => 'numeric|min:1',
+            'bloodPressureS' => 'numeric|min:1',
+            'bloodPressureD' => 'numeric|min:1',
+            'heartRate' => 'numeric|min:1',
+            'neckFlexion' => 'numeric|min:1',
+            'neckExtension' => 'numeric|min:1',
+            'elbowFlexion' => 'numeric|min:1',
+            'elbowExtension' => 'numeric|min:0',            
+            'gripStrengthL1' => 'numeric|min:1',
+            'gripStrengthL2' => 'numeric|min:1',
+            'gripStrengthL3' => 'numeric|min:1',
+            'gripStrengthR1' => 'numeric|min:1',
+            'gripStrengthR2' => 'numeric|min:1',
+            'gripStrengthR3' => 'numeric|min:1'
         ]);
         $doctor_id = Auth::user()->id;
         if (Auth::user()->type == 'manager') {
@@ -62,10 +78,25 @@ class PatientController extends Controller
         $patient->firstName = $request->firstName;
         $patient->lastName = $request->lastName;
         $patient->dateOfBirth = $request->dateOfBirth;
+        $patient->dateOfInjury = $request->dateOfInjury;
+        $patient->dateOfAssessment = $request->dateOfAssessment;
         $patient->gender = $request->gender;
         $patient->phone = $request->phone;
         $patient->height = $request->height;
         $patient->weight = $request->weight;
+        $patient->bloodPressureS = $request->bloodPressureS;
+        $patient->bloodPressureD = $request->bloodPressureD;
+        $patient->heartRate = $request->heartRate;
+        $patient->neckFlexion = $request->neckFlexion;
+        $patient->neckExtension = $request->neckExtension;
+        $patient->elbowFlexion = $request->elbowFlexion;
+        $patient->elbowExtension = $request->elbowExtension;
+        $patient->gripStrengthL1 = $request->gripStrengthL1;
+        $patient->gripStrengthL2 = $request->gripStrengthL2;
+        $patient->gripStrengthL3 = $request->gripStrengthL3;
+        $patient->gripStrengthR1 = $request->gripStrengthR1;
+        $patient->gripStrengthR2 = $request->gripStrengthR2;
+        $patient->gripStrengthR3 = $request->gripStrengthR3;
         $patient->doctor_id = $doctor_id;
         // dd($patient);
         $patient->save();
@@ -81,6 +112,11 @@ class PatientController extends Controller
     public function show($id)
     {
         $patient = Patient::find($id);
+        // $now = new DateTime("+10 hours");
+        // $age = date('Y', time()) - date('Y', strtotime($dob)) - 1; 
+        // dd($age);
+        // dd($now);
+        // dd($patient);
         return view('patient.show')->with('patient',$patient);
     }
 
@@ -109,17 +145,47 @@ class PatientController extends Controller
             'firstName' => 'required|max:255',
             'lastName' => 'required|max:255',
             'dateOfBirth' => 'required|date',
+            'dateOfInjury' => 'required|date',
+            'dateOfAssessment' => 'required|date',
             'height' => 'numeric|min:1',
-            'weight' => 'numeric|min:1'
+            'weight' => 'numeric|min:1',
+            'bloodPressureS' => 'numeric|min:1',
+            'bloodPressureD' => 'numeric|min:1',
+            'heartRate' => 'numeric|min:1',
+            'neckFlexion' => 'numeric|min:1',
+            'neckExtension' => 'numeric|min:1',
+            'elbowFlexion' => 'numeric|min:1',
+            'elbowExtension' => 'numeric|min:0',
+            'gripStrengthL1' => 'numeric|min:1',
+            'gripStrengthL2' => 'numeric|min:1',
+            'gripStrengthL3' => 'numeric|min:1',
+            'gripStrengthR1' => 'numeric|min:1',
+            'gripStrengthR2' => 'numeric|min:1',
+            'gripStrengthR3' => 'numeric|min:1'
         ]);
         $patient = Patient::find($id);
         $patient->firstName = $request->firstName;
         $patient->lastName = $request->lastName;
         $patient->dateOfBirth = $request->dateOfBirth;
+        $patient->dateOfInjury = $request->dateOfInjury;
+        $patient->dateOfAssessment = $request->dateOfAssessment;
         $patient->gender = $request->gender;
         $patient->phone = $request->phone;
         $patient->height = $request->height;
         $patient->weight = $request->weight;
+        $patient->bloodPressureS = $request->bloodPressureS;
+        $patient->bloodPressureD = $request->bloodPressureD;
+        $patient->heartRate = $request->heartRate;
+        $patient->neckFlexion = $request->neckFlexion;
+        $patient->neckExtension = $request->neckExtension;
+        $patient->elbowFlexion = $request->elbowFlexion;
+        $patient->elbowExtension = $request->elbowExtension;
+        $patient->gripStrengthL1 = $request->gripStrengthL1;
+        $patient->gripStrengthL2 = $request->gripStrengthL2;
+        $patient->gripStrengthL3 = $request->gripStrengthL3;
+        $patient->gripStrengthR1 = $request->gripStrengthR1;
+        $patient->gripStrengthR2 = $request->gripStrengthR2;
+        $patient->gripStrengthR3 = $request->gripStrengthR3;
         $patient->save();
         return redirect("/patient/$id");
     }

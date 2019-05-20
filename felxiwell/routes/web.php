@@ -40,3 +40,7 @@ Route::get('/patientsForDoctor/{doctor_id}','DoctorController@show');
 // create the patients for selected doctor for admin
 Route::get('/patient/createFor/{doctor_id}','DoctorController@create');
 
+// test
+Route::get('/t', function () {
+    return view('test');
+});
