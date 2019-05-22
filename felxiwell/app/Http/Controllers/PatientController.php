@@ -52,23 +52,23 @@ class PatientController extends Controller
             'firstName' => 'required|max:255',
             'lastName' => 'required|max:255',
             'dateOfBirth' => 'required|date',
-            'dateOfInjury' => 'required|date',
-            'dateOfAssessment' => 'required|date',
-            'height' => 'numeric|min:1',
-            'weight' => 'numeric|min:1',
-            'bloodPressureS' => 'numeric|min:1',
-            'bloodPressureD' => 'numeric|min:1',
-            'heartRate' => 'numeric|min:1',
-            'neckFlexion' => 'numeric|min:1',
-            'neckExtension' => 'numeric|min:1',
-            'elbowFlexion' => 'numeric|min:1',
-            'elbowExtension' => 'numeric|min:0',            
-            'gripStrengthL1' => 'numeric|min:1',
-            'gripStrengthL2' => 'numeric|min:1',
-            'gripStrengthL3' => 'numeric|min:1',
-            'gripStrengthR1' => 'numeric|min:1',
-            'gripStrengthR2' => 'numeric|min:1',
-            'gripStrengthR3' => 'numeric|min:1'
+            'dateOfInjury' => 'nullable|date',
+            'dateOfAssessment' => 'nullable|date',
+            'height' => 'nullable|numeric|min:1',
+            'weight' => 'nullable|numeric|min:1',
+            'bloodPressureS' => 'nullable|numeric|min:1',
+            'bloodPressureD' => 'nullable|numeric|min:1',
+            'heartRate' => 'nullable|numeric|min:1',
+            'neckFlexion' => 'nullable|numeric|min:1',
+            'neckExtension' => 'nullable|numeric|min:1',
+            'elbowFlexion' => 'nullable|numeric|min:1',
+            'elbowExtension' => 'nullable|numeric|min:0',            
+            'gripStrengthL1' => 'nullable|numeric|min:1',
+            'gripStrengthL2' => 'nullable|numeric|min:1',
+            'gripStrengthL3' => 'nullable|numeric|min:1',
+            'gripStrengthR1' => 'nullable|numeric|min:1',
+            'gripStrengthR2' => 'nullable|numeric|min:1',
+            'gripStrengthR3' => 'nullable|numeric|min:1'
         ]);
         $doctor_id = Auth::user()->id;
         if (Auth::user()->type == 'manager') {
@@ -145,23 +145,23 @@ class PatientController extends Controller
             'firstName' => 'required|max:255',
             'lastName' => 'required|max:255',
             'dateOfBirth' => 'required|date',
-            'dateOfInjury' => 'required|date',
-            'dateOfAssessment' => 'required|date',
-            'height' => 'numeric|min:1',
-            'weight' => 'numeric|min:1',
-            'bloodPressureS' => 'numeric|min:1',
-            'bloodPressureD' => 'numeric|min:1',
-            'heartRate' => 'numeric|min:1',
-            'neckFlexion' => 'numeric|min:1',
-            'neckExtension' => 'numeric|min:1',
-            'elbowFlexion' => 'numeric|min:1',
-            'elbowExtension' => 'numeric|min:0',
-            'gripStrengthL1' => 'numeric|min:1',
-            'gripStrengthL2' => 'numeric|min:1',
-            'gripStrengthL3' => 'numeric|min:1',
-            'gripStrengthR1' => 'numeric|min:1',
-            'gripStrengthR2' => 'numeric|min:1',
-            'gripStrengthR3' => 'numeric|min:1'
+            'dateOfInjury' => 'nullable|date',
+            'dateOfAssessment' => 'nullable|date',
+            'height' => 'nullable|numeric|min:1',
+            'weight' => 'nullable|numeric|min:1',
+            'bloodPressureS' => 'nullable|numeric|min:1',
+            'bloodPressureD' => 'nullable|numeric|min:1',
+            'heartRate' => 'nullable|numeric|min:1',
+            'neckFlexion' => 'nullable|numeric|min:1',
+            'neckExtension' => 'nullable|numeric|min:1',
+            'elbowFlexion' => 'nullable|numeric|min:1',
+            'elbowExtension' => 'nullable|numeric|min:0',            
+            'gripStrengthL1' => 'nullable|numeric|min:1',
+            'gripStrengthL2' => 'nullable|numeric|min:1',
+            'gripStrengthL3' => 'nullable|numeric|min:1',
+            'gripStrengthR1' => 'nullable|numeric|min:1',
+            'gripStrengthR2' => 'nullable|numeric|min:1',
+            'gripStrengthR3' => 'nullable|numeric|min:1'
         ]);
         $patient = Patient::find($id);
         $patient->firstName = $request->firstName;
@@ -186,7 +186,9 @@ class PatientController extends Controller
         $patient->gripStrengthR1 = $request->gripStrengthR1;
         $patient->gripStrengthR2 = $request->gripStrengthR2;
         $patient->gripStrengthR3 = $request->gripStrengthR3;
+        // dd($patient->height);
         $patient->save();
+        // dd($patient);
         return redirect("/patient/$id");
     }
 

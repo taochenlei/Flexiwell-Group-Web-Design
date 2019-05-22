@@ -42,8 +42,12 @@ function diffDate($dateStr1, $dateStr2)
                             {{diffDate(date('Y-m-d', time()), $patient->dateOfInjury)['d']}} day(s)</p>
       <p><b>Weight:</b> {{$patient->weight}} (kg)</p>
       <p><b>Height:</b> {{$patient->height}} (cm)</p>
-      <p><b>BMI:</b> {{round($patient->weight/($patient->height/100)**2, 2)}}</p>
-      <p>(BMI = Weight (kg) / Height^2 (m^2), 18.5~24.9)</p>
+      @if($patient->height == 0)
+        asdasd
+      @else
+        <p><b>BMI:</b> {{round($patient->weight/($patient->height/100)**2, 2)}}</p>
+        <p>(BMI = Weight (kg) / Height^2 (m^2), 18.5~24.9)</p>
+      @endif
       <hr>
       <p><b>Blood Pressure:</b> {{$patient->bloodPressureS}}/{{$patient->bloodPressureD}} (mmHg)</p>
       <p>(Systolic Blood Pressure: 90 - 120 (mmHg), Diastolic Blood Pressure: 60 - 80 (mmHg))</p>
