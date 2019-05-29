@@ -48,7 +48,7 @@ class PatientsTableSeeder extends Seeder
             'phone' => '0420902312',
             'height' => '162',
             'weight' => '52.2',
-            'doctor_id' => '1',
+            'doctor_id' => '3',
             'bloodPressureS' => '101',
             'bloodPressureD' => '81',
             'heartRate' => '91',

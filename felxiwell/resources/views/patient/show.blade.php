@@ -62,7 +62,6 @@ function diffDate($dateStr1, $dateStr2)
       <p><b>Neck Extension Percentage loss:</b> {{round((70 - $patient->neckExtension) / 70 * 100, 0)}}%</p>
       <p><b>Neck ROM:</b> {{$patient->neckFlexion + $patient->neckExtension}}°</p>
       <p><b>Neck Percentage Loss:</b> {{round((130 - $patient->neckFlexion - $patient->neckExtension) / 130 * 100, 0)}}%</p>
-      <p><b>Grip Strength: </b>(kg)</p>
       <hr>
       <p><b>Elbow Flexion:</b> {{$patient->elbowFlexion}}°</p>
       <p>(Elbow Flexion Normal: 145°)</p>
